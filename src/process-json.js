@@ -19,20 +19,21 @@ Daily Forecast:
     highs and lows
 */
 
-import { dailyWeatherData, getWeatherData } from "./get-weather-data.js";
+import { dailyWeatherData, getLocationData } from "./get-weather-data.js";
 
-function processJSON(location) {
-  const locationJSON = getWeatherData(location);
-  const responseJSON = dailyWeatherData(locationJSON.coord.lon, locationJSON.coord.lat);
-
-
-
+async function processJSON(location) {
+  const locationJSON = await getLocationData(location);
+  const responseJSON = await dailyWeatherData(
+    locationJSON.coord.lon,
+    locationJSON.coord.lat,
+  );
 
   const weatherObj = {
     current: {
       location: locationJSON.name,
-      lon: locationJSON.coord.lon,
-      lat: locationJSON.coord.lat,
+      time: responseJSON.current.time,
+      longitude: locationJSON.coord.lon,
+      latitude: locationJSON.coord.lat,
       temp: responseJSON.current.temperature_2m,
       feels: responseJSON.current.apparent_temperature,
       clouds: responseJSON.current.cloud_cover,
@@ -55,19 +56,20 @@ function processJSON(location) {
 
   for (let i = 1; i <= 24; i++) {
     weatherObj.hourly["hour" + i] = {
-        clouds: responseJSON.hourly.cloud_cover.at(i),
-        temp: responseJSON.hourly.temperature_2m.at(i),
-    }
+      clouds: responseJSON.hourly.cloud_cover.at(i),
+      temp: responseJSON.hourly.temperature_2m.at(i),
+    };
   }
 
   for (let i = 1; i <= 6; i++) {
-    weatherObj.daily["day"+i] = {
-        clouds: responseJSON.daily.cloud_cover_mean.at(i),
-        high: responseJSON.daily.temperature_2m_max.at(i),
-        low: responseJSON.daily.temperature_2m_min.at(i),
-    }
+    weatherObj.daily["day" + i] = {
+      clouds: responseJSON.daily.cloud_cover_mean.at(i),
+      high: responseJSON.daily.temperature_2m_max.at(i),
+      low: responseJSON.daily.temperature_2m_min.at(i),
+    };
   }
-}
 
+  return weatherObj;
+}
 
 export { processJSON };
