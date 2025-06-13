@@ -1,0 +1,73 @@
+//What kind of data will I need for the weather app?
+
+/* 
+Current data:
+    temperature
+    feels like
+    visibility
+    precipitation
+    clouds
+    humidity
+    air pressure
+    uv
+    wind
+Hourly Forecast:
+    temperature 
+    clouds
+
+Daily Forecast:
+    highs and lows
+*/
+
+import { dailyWeatherData, getWeatherData } from "./get-weather-data.js";
+
+function processJSON(location) {
+  const locationJSON = getWeatherData(location);
+  const responseJSON = dailyWeatherData(locationJSON.coord.lon, locationJSON.coord.lat);
+
+
+
+
+  const weatherObj = {
+    current: {
+      location: locationJSON.name,
+      lon: locationJSON.coord.lon,
+      lat: locationJSON.coord.lat,
+      temp: responseJSON.current.temperature_2m,
+      feels: responseJSON.current.apparent_temperature,
+      clouds: responseJSON.current.cloud_cover,
+      humidity: responseJSON.current.relative_humidity_2m,
+      precipitation: responseJSON.current.precipitation,
+      pressure: responseJSON.current.pressure_msl,
+      windDirection: responseJSON.current.wind_direction_10m,
+      windSpeed: responseJSON.current.wind_speed_10m,
+    },
+    today: {
+      sunrise: responseJSON.daily.sunrise.at(0),
+      sunset: responseJSON.daily.sunset.at(0),
+      high: responseJSON.daily.temperature_2m_max.at(0),
+      low: responseJSON.daily.temperature_2m_min.at(0),
+      uv: responseJSON.daily.uv_index_max.at(0),
+    },
+    hourly: {},
+    daily: {},
+  };
+
+  for (let i = 1; i <= 24; i++) {
+    weatherObj.hourly["hour" + i] = {
+        clouds: responseJSON.hourly.cloud_cover.at(i),
+        temp: responseJSON.hourly.temperature_2m.at(i),
+    }
+  }
+
+  for (let i = 1; i <= 6; i++) {
+    weatherObj.daily["day"+i] = {
+        clouds: responseJSON.daily.cloud_cover_mean.at(i),
+        high: responseJSON.daily.temperature_2m_max.at(i),
+        low: responseJSON.daily.temperature_2m_min.at(i),
+    }
+  }
+}
+
+
+export { processJSON };

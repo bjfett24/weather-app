@@ -1,0 +1,40 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Functional weather app: user can search for their city and page will display the weather by the hour and the week. There will also be a button to toggle the units (celsius or farrenheidt) that the information is displayed. This project is to test my knowledge of using API's, promises, async/await.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --open",
+    "build": "webpack --mode production",
+    "lint": "eslint . --ext .js --max-warnings=0",
+    "lint:fix": "eslint . --ext .js --fix",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjfett24/weather-app.git"
+  },
+  "author": "Ben Fetterman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjfett24/weather-app/issues"
+  },
+  "homepage": "https://github.com/bjfett24/weather-app#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "globals": "^16.2.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "^3.5.3",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
