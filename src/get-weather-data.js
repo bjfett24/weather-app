@@ -1,7 +1,7 @@
 async function getLocationData(location) {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=38ea6e23259802ea122fe0f499c7ed7b`,
+      `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(location)}&limit=1&appid=38ea6e23259802ea122fe0f499c7ed7b`,
       { mode: "cors" },
     );
 
@@ -11,10 +11,18 @@ async function getLocationData(location) {
     }
 
     const currentData = await response.json();
-    return currentData;
+    console.log(currentData);
+
+    if (currentData && currentData.length > 0) {
+      return currentData;
+    } else {
+      console.warn("No location found for:", location);
+      return null;
+    }
   } catch (error) {
     // This .catch() handles network errors or errors thrown by our 'response.ok' check
     console.error("Fetch error:", error);
+    return null;
   }
 }
 

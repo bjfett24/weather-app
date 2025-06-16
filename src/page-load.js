@@ -1,9 +1,9 @@
-import { populateSearchBar } from "./populate-search-bar.js";
+import { populateHome } from "./populate-home.js";
 
 function pageLoad() {
-    document.addEventListener('DOMContentLoaded', () => {
-    populateSearchBar();
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    populateHome();
+  });
 }
 
 export { pageLoad };

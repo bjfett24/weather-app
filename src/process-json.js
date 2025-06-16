@@ -23,17 +23,18 @@ import { dailyWeatherData, getLocationData } from "./get-weather-data.js";
 
 async function processJSON(location) {
   const locationJSON = await getLocationData(location);
+  console.log(locationJSON);
   const responseJSON = await dailyWeatherData(
-    locationJSON.coord.lon,
-    locationJSON.coord.lat,
+    locationJSON.at(0).lon,
+    locationJSON.at(0).lat,
   );
 
   const weatherObj = {
     current: {
-      location: locationJSON.name,
+      location: locationJSON.at(0).name,
       time: responseJSON.current.time,
-      longitude: locationJSON.coord.lon,
-      latitude: locationJSON.coord.lat,
+      longitude: locationJSON.at(0).lon,
+      latitude: locationJSON.at(0).lat,
       temp: responseJSON.current.temperature_2m,
       feels: responseJSON.current.apparent_temperature,
       clouds: responseJSON.current.cloud_cover,
