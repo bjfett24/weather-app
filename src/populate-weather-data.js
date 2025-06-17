@@ -7,7 +7,6 @@ import { populateDaily } from "./populate-daily-block.js";
 import { populateSun } from "./populate-sun.js";
 import { populateWind } from "./populate-wind.js";
 
-
 function populateForecast(weatherObj) {
   const oldContainer = document.querySelector(".container");
   oldContainer.remove();

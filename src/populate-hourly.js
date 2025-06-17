@@ -2,15 +2,24 @@ import { generateCloud } from "./generate-cloud-phrase.js";
 import { generateTime } from "./generate-time.js";
 
 function populateHourly(weatherObj) {
-  const dataBlock = document.querySelector('.data.block');
-  
+  const dataBlock = document.querySelector(".data.block");
+
   const hourlyBlock = document.createElement("div");
   hourlyBlock.classList.add("hourly", "block");
   dataBlock.appendChild(hourlyBlock);
 
+  const hourlyHeading = document.createElement("div");
+  hourlyHeading.classList.add("heading");
+  hourlyHeading.textContent = "Hourly Forecast";
+  hourlyBlock.appendChild(hourlyHeading);
+
+  const hourlyContent = document.createElement("div");
+  hourlyContent.classList.add("content");
+  hourlyBlock.appendChild(hourlyContent);
+
   const nowBox = document.createElement("div");
   nowBox.classList.add("now", "box");
-  hourlyBlock.appendChild(nowBox);
+  hourlyContent.appendChild(nowBox);
 
   const nowTime = document.createElement("div");
   nowTime.classList.add("time");
@@ -33,7 +42,7 @@ function populateHourly(weatherObj) {
   for (const datum in hourData) {
     const box = document.createElement("div");
     box.classList.add(`${datum}`, "box");
-    hourlyBlock.appendChild(box);
+    hourlyContent.appendChild(box);
 
     const time = document.createElement("div");
     time.classList.add("time");
