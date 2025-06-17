@@ -4,7 +4,8 @@ import { getLocationData } from "./get-weather-data.js";
 import { populateSearchError } from "./populate-error.js";
 
 function populateSearchBar() {
-  const searchBox = document.createElement("div");
+  const searchBox = document.createElement("form");
+  searchBox.setAttribute("method", "GET");
   searchBox.classList.add("search", "box");
   document.body.appendChild(searchBox);
 
@@ -16,19 +17,25 @@ function populateSearchBar() {
 
   const searchButton = document.createElement("button");
   searchButton.classList.add("search", "button");
+  searchButton.type = "submit";
   searchButton.textContent = "Search";
-  searchButton.addEventListener("click", async () => {
-    const geoData = await getLocationData(searchInput.value);
-    if (geoData === null) {
-      populateSearchError(searchInput.value);
-      console.log("Stopping the program");
-    } else {
-      const weatherObj = await returnWeatherData(searchInput.value);
+  searchBox.appendChild(searchButton);
+
+  searchBox.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    console.log("form submitted");
+    const location = searchInput.value;
+    const geoData = await getLocationData(location);
+
+    if (geoData !== null) {
+      const weatherObj = await returnWeatherData(location);
       populateForecast(weatherObj);
       console.log(weatherObj);
+    } else {
+      populateSearchError(location);
+      console.log("Stopping the program");
     }
   });
-  searchBox.appendChild(searchButton);
 }
 
 async function returnWeatherData(location) {
