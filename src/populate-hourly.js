@@ -2,7 +2,11 @@ import { generateCloud } from "./generate-cloud-phrase.js";
 import { generateTime } from "./generate-time.js";
 
 function populateHourly(weatherObj) {
-  const hourlyBlock = document.querySelector(".hourly.block");
+  const dataBlock = document.querySelector('.data.block');
+  
+  const hourlyBlock = document.createElement("div");
+  hourlyBlock.classList.add("hourly", "block");
+  dataBlock.appendChild(hourlyBlock);
 
   const nowBox = document.createElement("div");
   nowBox.classList.add("now", "box");
