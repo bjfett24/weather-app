@@ -1,31 +1,26 @@
 class SVG {
-    constructor(className, viewBox, d) {
-        this.viewBox = viewBox;
-        this.fill = 'currentColor';
-        this.stroke = 'none';
-        this.nameSpace = 'http://www.w3.org/2000/svg';
-        this.d = d;
-        this.className = className;
-    }
+  constructor(className, viewBox, d) {
+    this.viewBox = viewBox;
+    this.fill = "currentColor";
+    this.stroke = "none";
+    this.nameSpace = "http://www.w3.org/2000/svg";
+    this.d = d;
+    this.className = className;
+  }
 
-    createSVG() {
-        const svg = document.createElementNS(this.nameSpace, 'svg');
-        svg.setAttribute('viewBox', this.viewBox);  
-        svg.setAttribute('fill', this.fill);
-        svg.setAttribute('stroke', this.stroke);
-        svg.classList.add(this.className);
+  createSVG() {
+    const svg = document.createElementNS(this.nameSpace, "svg");
+    svg.setAttribute("viewBox", this.viewBox);
+    svg.setAttribute("fill", this.fill);
+    svg.setAttribute("stroke", this.stroke);
+    svg.classList.add(this.className);
 
-        const path = document.createElementNS(this.nameSpace, 'path');
-        path.setAttribute('d', this.d);
+    const path = document.createElementNS(this.nameSpace, "path");
+    path.setAttribute("d", this.d);
 
-        svg.appendChild(path);
-        return svg
-
-    }
-    
-        
-
-        
+    svg.appendChild(path);
+    return svg;
+  }
 }
 
 export { SVG };

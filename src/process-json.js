@@ -22,12 +22,11 @@ Daily Forecast:
 import { dailyWeatherData, getLocationData } from "./get-weather-data.js";
 
 async function processJSON(location, tempUnit) {
-  console.log(tempUnit);
   const locationJSON = await getLocationData(location);
   const responseJSON = await dailyWeatherData(
     locationJSON.at(0).lon,
     locationJSON.at(0).lat,
-    tempUnit
+    tempUnit,
   );
 
   const weatherObj = {

@@ -1,5 +1,6 @@
-import { generateCloud } from "./generate-cloud-phrase.js";
+import { generateCloud, WeatherIcon } from "./generate-cloud-phrase.js";
 import { generateUV } from "./generate-uv-word.js";
+import { SVG } from "./create-svg.js";
 
 function populateNowBlock(weatherObj) {
   const dataBlock = document.querySelector(".data.block");
@@ -13,10 +14,26 @@ function populateNowBlock(weatherObj) {
   nowTemp.textContent = `${Math.round(weatherObj.current.temp)}°`;
   nowBlock.appendChild(nowTemp);
 
-  const nowClouds = document.createElement("div");
-  nowClouds.classList.add("now-clouds");
-  nowClouds.textContent = generateCloud(weatherObj.current.clouds);
-  nowBlock.appendChild(nowClouds);
+  const nowCloudsCont = document.createElement("div");
+  nowCloudsCont.classList.add("now-clouds", "container");
+  nowBlock.appendChild(nowCloudsCont);
+
+  const weatherIcon = new WeatherIcon(weatherObj.current.clouds);
+  console.log(weatherIcon);
+  const cloudsSVG = new SVG(
+    weatherIcon.getClassName(),
+    weatherIcon.getViewBox(),
+    weatherIcon.getD(),
+  );
+  console.log(cloudsSVG);
+  const cloudsElement = cloudsSVG.createSVG();
+  cloudsElement.classList.add("svg");
+  nowCloudsCont.appendChild(cloudsElement);
+
+  const nowCloudsPhrase = document.createElement("div");
+  nowCloudsPhrase.classList.add("now-clouds", "phrase");
+  nowCloudsPhrase.textContent = generateCloud(weatherObj.current.clouds);
+  nowCloudsCont.appendChild(nowCloudsPhrase);
 
   const feelBox = document.createElement("div");
   feelBox.classList.add("feels-like", "box");

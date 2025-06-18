@@ -9,7 +9,8 @@
 
 :root,
 body,
-.container {
+.home.container,
+.forecast.container {
   margin: 0px;
   padding: 0px;
   font-family: "lt_museummedium", "Times New Roman", Times, serif;
@@ -129,50 +130,52 @@ body,
 }
 
 .forecast.input:hover {
-    background-color: rgba(0, 0, 0, 0.177);
+  background-color: rgba(0, 0, 0, 0.177);
 }
 
 .forecast.search-button {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
 }
 
 .magnify-button {
-    width: 2rem;
-    height: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .magnify-button:hover {
-    color: rgb(255, 217, 0);
+  color: rgb(255, 217, 0);
 }
 
 .temp-buttons {
-    display: flex;
-    gap: 0.3rem;
-
+  display: flex;
+  gap: 0.3rem;
 }
 
-.far-temp, .cel-temp {
-    background-color: rgba(0, 0, 0, 0.478);
-    color: rgba(255, 255, 255, 0.314);
-    padding: 0.5rem;
-    border-radius: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.303);
+.far-temp,
+.cel-temp {
+  background-color: rgba(0, 0, 0, 0.478);
+  color: rgba(255, 255, 255, 0.314);
+  padding: 0.5rem;
+  border-radius: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.303);
 }
 
-.far-temp:hover, .cel-temp:hover {
-    background-color: rgba(0, 0, 0, 0.721);
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 255, 255);
-    transform: translateY(-3px);
+.far-temp:hover,
+.cel-temp:hover {
+  background-color: rgba(0, 0, 0, 0.721);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  transform: translateY(-3px);
 }
-.far-temp.selected, .cel-temp.selected {
-    background-color: rgb(255, 217, 0);
-    border: 1px solid rebeccapurple;
-    color: rebeccapurple;
-    font-weight: 700;
+.far-temp.selected,
+.cel-temp.selected {
+  background-color: rgb(255, 217, 0);
+  border: 1px solid rebeccapurple;
+  color: rebeccapurple;
+  font-weight: 700;
 }
 
 .forecast.container {
@@ -207,7 +210,7 @@ body,
   grid-row: 1 / 4;
   grid-column: 1 / 2;
   display: grid;
-  grid-template: 5fr 2fr 3fr 3fr / repeat(2, 1fr);
+  grid-template: 3fr 3fr 3fr 3fr / repeat(2, 1fr);
   gap: 1rem;
   border: 4px solid rgba(0, 0, 0, 0.692);
   padding: 1rem;
@@ -217,14 +220,28 @@ body,
 .now-temp {
   grid-row: 1 / 2;
   grid-column: 1 / 3;
-  font-size: 4rem;
+  font-size: 5.5rem;
   text-align: center;
   align-self: center;
 }
 
-.now-clouds {
+.now-clouds.container {
   grid-row: 2 / 3;
   grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.now-clouds .svg {
+  width: 5rem;
+  height: 5rem;
+  color: black;
+}
+
+.now-clouds.phrase {
   font-size: 1.5rem;
   text-align: center;
 }
@@ -318,24 +335,24 @@ body,
   width: 70px;
   color: white;
   background-color: rgba(0, 0, 0, 0.556);
+  min-width: 49px;
 }
 
 .today.box {
-    background-color:rgb(204, 0, 255);
-    color: rgb(255, 255, 255);
-    
+  background-color: rgb(204, 0, 255);
+  color: rgb(255, 255, 255);
 }
 
 .today .day {
-    color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .now.box {
-    background-color: rgb(0, 255, 110);
-    color: rgb(0, 0, 0);
+  background-color: rgb(0, 255, 110);
+  color: rgb(0, 0, 0);
 }
 .now .time {
-    color: black;
+  color: black;
 }
 .high-low {
   grid-row: 3 / 4;

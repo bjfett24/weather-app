@@ -28,7 +28,7 @@ function populateSearchBar() {
     const geoData = await getLocationData(location);
 
     if (geoData !== null) {
-      const weatherObj = await returnWeatherData(location, 'F');
+      const weatherObj = await returnWeatherData(location, "F");
       populateForecast(weatherObj);
       console.log(weatherObj);
     } else {
