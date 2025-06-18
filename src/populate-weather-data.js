@@ -19,15 +19,19 @@ function populateForecast(weatherObj) {
   body.appendChild(forecastContainer);
   setBackground(weatherObj);
 
+  const header = document.createElement("div");
+  header.classList.add("forecast", "header");
+  forecastContainer.appendChild(header);
+
   const locationTitle = document.createElement("div");
-  locationTitle.classList.add("forecast", "title");
+  locationTitle.classList.add("title");
   locationTitle.textContent = weatherObj.current.location;
-  forecastContainer.appendChild(locationTitle);
+  header.appendChild(locationTitle);
 
   const subSearchForm = document.createElement("form");
   subSearchForm.setAttribute("method", "GET");
   subSearchForm.classList.add("forecast", "form");
-  forecastContainer.appendChild(subSearchForm);
+  header.appendChild(subSearchForm);
 
   const forecastInput = document.createElement("input");
   forecastInput.classList.add("forecast", "input");
@@ -59,7 +63,7 @@ function populateForecast(weatherObj) {
   const tempToggle = document.createElement("button");
   tempToggle.classList.add("temp-toggle");
   tempToggle.textContent = "Temp Toggle";
-  forecastContainer.appendChild(tempToggle);
+  header.appendChild(tempToggle);
 
   const dataBlock = document.createElement("div");
   dataBlock.classList.add("data", "block");
