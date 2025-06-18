@@ -4,10 +4,11 @@ import { getLocationData } from "./get-weather-data.js";
 import { populateSearchError } from "./populate-error.js";
 
 function populateSearchBar() {
+  const searchContainer = document.querySelector(".search.container");
   const searchBox = document.createElement("form");
   searchBox.setAttribute("method", "GET");
   searchBox.classList.add("search", "box");
-  document.body.appendChild(searchBox);
+  searchContainer.appendChild(searchBox);
 
   const searchInput = document.createElement("input");
   searchInput.setAttribute("type", "text");

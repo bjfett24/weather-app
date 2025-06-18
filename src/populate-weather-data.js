@@ -9,6 +9,7 @@ import { populateWind } from "./populate-wind.js";
 import { setBackground } from "./generate-bg.js";
 import { SVG } from "./create-svg.js";
 import { addSelectedClass } from "./units-selected-class.js";
+import { populateHome } from "./populate-home.js";
 
 function populateForecast(weatherObj) {
   const body = document.querySelector("body");
@@ -27,7 +28,9 @@ function populateForecast(weatherObj) {
 
   const locationTitle = document.createElement("div");
   locationTitle.classList.add("title");
+  locationTitle.role = "button";
   locationTitle.textContent = weatherObj.current.location;
+  locationTitle.addEventListener("click", populateHome);
   header.appendChild(locationTitle);
 
   const subSearchForm = document.createElement("form");

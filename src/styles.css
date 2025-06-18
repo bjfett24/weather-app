@@ -8,7 +8,7 @@
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root,
@@ -24,16 +24,25 @@ body,
 
 .home.container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  background-color: rgb(44, 142, 254);
+  background-image: url(./img/partly-cloudy-bg.jpg);
+  background-size: cover;
+}
+
+.search.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 8rem;
+  border-radius: 40rem;
+  background-color: rgba(0, 0, 0, 0.542);
+  border: 6px solid rgb(249, 255, 139);
 }
 
 .home.title {
   font-size: 3rem;
-  color: white;
+  color: rgb(249, 255, 139);
   text-shadow: 8px 14px 15px rgb(0, 0, 0, 0.25);
   font-weight: 700;
 }
@@ -45,7 +54,7 @@ body,
   border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.416);
   font-family: inherit;
-  border: 2px solid rgb(42, 42, 42);
+  border: 2px solid rgb(124, 124, 124);
 }
 
 .search.input[placeholder] {
@@ -55,11 +64,11 @@ body,
 }
 
 .search.input:focus::placeholder {
-  color: rgb(154, 154, 154);
+  color: rgb(90, 90, 90);
 }
 
 .search.input::placeholder {
-  color: rgb(59, 59, 59);
+  color: rgb(123, 123, 123);
 }
 
 .search.input:focus {
@@ -120,6 +129,13 @@ body,
   padding: 1rem;
   border-radius: 1rem;
   margin: 1rem 0px 0px 1rem;
+}
+
+.forecast .title:hover {
+  background-color: rgba(255, 255, 255, 0.454);
+  box-shadow: 6px 10px 10px 10px rgb(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  color: rgb(255, 102, 0);
 }
 
 .forecast.input {
@@ -310,16 +326,18 @@ body,
   font-size: 2rem;
 }
 
-.hourly .clouds, .daily .clouds {
+.hourly .clouds,
+.daily .clouds {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.hourly .svg, .daily .svg {
-    width: 2rem;
-    height: 2rem;
+.hourly .svg,
+.daily .svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 .content {

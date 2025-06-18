@@ -2,7 +2,6 @@ import { generateCloud, WeatherIcon } from "./generate-cloud-phrase.js";
 import { generateTime } from "./generate-time.js";
 import { SVG } from "./create-svg.js";
 
-
 function populateHourly(weatherObj) {
   const dataBlock = document.querySelector(".data.block");
 
@@ -47,7 +46,6 @@ function populateHourly(weatherObj) {
   nowCloudsElement.classList.add("svg");
   nowClouds.appendChild(nowCloudsElement);
 
-
   const hourData = weatherObj.hourly;
   const currentHour = weatherObj.current.time.slice(11, 13);
 
@@ -70,7 +68,9 @@ function populateHourly(weatherObj) {
     clouds.classList.add("clouds");
     box.appendChild(clouds);
 
-    const weatherIcon = new WeatherIcon(weatherObj.hourly[`hour${datum.slice(4)}`].clouds);
+    const weatherIcon = new WeatherIcon(
+      weatherObj.hourly[`hour${datum.slice(4)}`].clouds,
+    );
     const cloudsSVG = new SVG(
       weatherIcon.getClassName(),
       weatherIcon.getViewBox(),
