@@ -28,7 +28,7 @@ function populateSearchBar() {
     const geoData = await getLocationData(location);
 
     if (geoData !== null) {
-      const weatherObj = await returnWeatherData(location);
+      const weatherObj = await returnWeatherData(location, 'F');
       populateForecast(weatherObj);
       console.log(weatherObj);
     } else {
@@ -38,8 +38,8 @@ function populateSearchBar() {
   });
 }
 
-async function returnWeatherData(location) {
-  const cityWeatherData = await processJSON(location);
+async function returnWeatherData(location, tempUnit) {
+  const cityWeatherData = await processJSON(location, tempUnit);
   return cityWeatherData;
 }
 
