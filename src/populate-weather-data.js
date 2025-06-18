@@ -6,14 +6,18 @@ import { populateNowBlock } from "./populate-now-block.js";
 import { populateDaily } from "./populate-daily-block.js";
 import { populateSun } from "./populate-sun.js";
 import { populateWind } from "./populate-wind.js";
+import { setBackground } from "./generate-bg.js";
 
 function populateForecast(weatherObj) {
+  const body = document.querySelector("body");
+
   const oldContainer = document.querySelector(".container");
   oldContainer.remove();
 
   const forecastContainer = document.createElement("div");
   forecastContainer.classList.add("container", "forecast");
-  document.body.appendChild(forecastContainer);
+  body.appendChild(forecastContainer);
+  setBackground(weatherObj);
 
   const locationTitle = document.createElement("div");
   locationTitle.classList.add("forecast", "title");
