@@ -7,6 +7,10 @@
   font-style: normal;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 :root,
 body,
 .home.container,
@@ -152,6 +156,7 @@ body,
 .temp-buttons {
   display: flex;
   gap: 0.3rem;
+  margin-right: 2rem;
 }
 
 .far-temp,
@@ -161,6 +166,9 @@ body,
   padding: 0.5rem;
   border-radius: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.303);
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.25rem;
 }
 
 .far-temp:hover,
@@ -215,6 +223,7 @@ body,
   border: 4px solid rgba(0, 0, 0, 0.692);
   padding: 1rem;
   border-radius: 1rem;
+  min-width: 350px;
 }
 
 .now-temp {
@@ -301,8 +310,16 @@ body,
   font-size: 2rem;
 }
 
-.hourly .clouds {
+.hourly .clouds, .daily .clouds {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hourly .svg, .daily .svg {
+    width: 2rem;
+    height: 2rem;
 }
 
 .content {
@@ -324,18 +341,18 @@ body,
 
 .daily .box,
 .hourly .box {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 1rem;
   padding: 1rem;
   display: grid;
   grid-template-rows: 1fr 1fr 3fr;
   align-items: center;
   justify-items: center;
-  height: 125px;
-  width: 70px;
+  height: 150px;
+  width: 100px;
   color: white;
   background-color: rgba(0, 0, 0, 0.556);
-  min-width: 49px;
+  min-width: 100px;
 }
 
 .today.box {

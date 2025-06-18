@@ -1,5 +1,6 @@
-import { generateCloud } from "./generate-cloud-phrase.js";
+import { WeatherIcon } from "./generate-cloud-phrase.js";
 import { generateDay } from "./generate-day-of-week.js";
+import { SVG } from "./create-svg.js";
 
 function populateDaily(weatherObj) {
   const dataBlock = document.querySelector(".data.block");
@@ -28,8 +29,17 @@ function populateDaily(weatherObj) {
 
   const todayClouds = document.createElement("div");
   todayClouds.classList.add("clouds");
-  todayClouds.textContent = generateCloud(weatherObj.current.clouds);
   todayBox.appendChild(todayClouds);
+
+  const weatherIcon = new WeatherIcon(weatherObj.current.clouds);
+  const cloudsSVG = new SVG(
+    weatherIcon.getClassName(),
+    weatherIcon.getViewBox(),
+    weatherIcon.getD(),
+  );
+  const cloudsElement = cloudsSVG.createSVG();
+  cloudsElement.classList.add("svg");
+  todayClouds.appendChild(cloudsElement);
 
   const todayTempContainer = document.createElement("div");
   todayTempContainer.classList.add("high-low");
@@ -61,8 +71,17 @@ function populateDaily(weatherObj) {
 
     const clouds = document.createElement("div");
     clouds.classList.add("clouds");
-    clouds.textContent = generateCloud(weatherObj.daily[datum].clouds);
     box.appendChild(clouds);
+
+    const weatherIcon = new WeatherIcon(weatherObj.daily[datum].clouds);
+    const cloudsSVG = new SVG(
+      weatherIcon.getClassName(),
+      weatherIcon.getViewBox(),
+      weatherIcon.getD(),
+    );
+    const cloudsElement = cloudsSVG.createSVG();
+    cloudsElement.classList.add("svg");
+    clouds.appendChild(cloudsElement);
 
     const tempContainer = document.createElement("div");
     tempContainer.classList.add("high-low");

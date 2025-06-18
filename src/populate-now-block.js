@@ -19,13 +19,11 @@ function populateNowBlock(weatherObj) {
   nowBlock.appendChild(nowCloudsCont);
 
   const weatherIcon = new WeatherIcon(weatherObj.current.clouds);
-  console.log(weatherIcon);
   const cloudsSVG = new SVG(
     weatherIcon.getClassName(),
     weatherIcon.getViewBox(),
     weatherIcon.getD(),
   );
-  console.log(cloudsSVG);
   const cloudsElement = cloudsSVG.createSVG();
   cloudsElement.classList.add("svg");
   nowCloudsCont.appendChild(cloudsElement);
